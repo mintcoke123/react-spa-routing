@@ -1,5 +1,9 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import { categories } from '../../constants/categories';
+import { useThemeStore } from '../store/store';
+import { useNavigate } from 'react-router-dom';
+import { LIGHT_COLORS } from '../../constants/colors';
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -9,7 +13,7 @@ const HeaderContainer = styled.div`
   background-color: #f0f0f0;
 `;
 
-const CategoryBlock = styled.div`
+const CategoryBlock = styled.div<{ onClick: () => void }>`
   display: flex;
   gap: 1rem;
   height: 100%;
@@ -17,19 +21,26 @@ const CategoryBlock = styled.div`
   margin: 0 0.1rem;
   align-items: center;
   padding: 0.5rem 1rem;
-  background-color: blue;
+  background-color: ${LIGHT_COLORS.primary};
   text-align: center;
   color: white;
+  cursor: pointer;
+  &:hover {
+    background-color: ${LIGHT_COLORS.secondary};
+  }
 `;
 
 const Header = () => {
+  const navigate = useNavigate();
+  const { theme, toggleTheme } = useThemeStore();
+
   return (
     <HeaderContainer>
-      <CategoryBlock>category1</CategoryBlock>
-      <CategoryBlock>category2</CategoryBlock>
-      <CategoryBlock>category3</CategoryBlock>
-      <CategoryBlock>category4</CategoryBlock>
-      <CategoryBlock>category5</CategoryBlock>
+      {categories.map((category) => (
+        <CategoryBlock key={category} onClick={() => navigate(`/${category}`)}>
+          {category}
+        </CategoryBlock>
+      ))}
     </HeaderContainer>
   );
 };
