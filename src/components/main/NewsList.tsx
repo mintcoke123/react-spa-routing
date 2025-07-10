@@ -1,6 +1,8 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import NewsItem from './NewsItem';
+import { useNewsDataStore } from '../store/store';
+import Loading from './Loading';
 
 const NewsListContainer = styled.div`
   display: flex;
@@ -9,11 +11,17 @@ const NewsListContainer = styled.div`
 `;
 
 const NewsList = () => {
+  const { newsData, isLoading } = useNewsDataStore();
+
   return (
     <NewsListContainer>
-      <NewsItem />
-      <NewsItem />
-      <NewsItem />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        newsData.map((article) => (
+          <NewsItem key={article.url} article={article} />
+        ))
+      )}
     </NewsListContainer>
   );
 };
