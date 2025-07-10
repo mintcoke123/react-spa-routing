@@ -1,6 +1,13 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import { Article } from '../../types/article';
+import noImage from '../../assets/noImage.svg';
+import {
+  getShorterDescription,
+  getShorterTitle,
+  isLongDescription,
+  isLongTitle,
+} from '../../utils/utils';
 
 const NewsItemContainer = styled.div`
   display: flex;
@@ -36,10 +43,20 @@ const NewsItemDescription = styled.p`
 const NewsItem = ({ article }: { article: Article }) => {
   return (
     <NewsItemContainer onClick={() => window.open(article.url, '_blank')}>
-      <NewsItemImage src={article.urlToImage} alt={article.title} />
+      <NewsItemImage src={article.urlToImage ?? noImage} alt={article.title} />
       <NewsItemContent>
-        <NewsItemTitle>{article.title}</NewsItemTitle>
-        <NewsItemDescription>{article.description}</NewsItemDescription>
+        <NewsItemTitle>
+          {isLongTitle(article.title)
+            ? getShorterTitle(article.title)
+            : article.title}
+        </NewsItemTitle>
+        <NewsItemDescription>
+          {article.description
+            ? isLongDescription(article.description)
+              ? getShorterDescription(article.description)
+              : article.description
+            : 'No description'}
+        </NewsItemDescription>
       </NewsItemContent>
     </NewsItemContainer>
   );
