@@ -6,6 +6,7 @@ import { Category } from '../types/category';
 import Header from '../components/header/Header';
 import { styled } from 'styled-components';
 import NewsList from '../components/main/NewsList';
+import Loading from '../components/main/Loading';
 
 export default function NewsPage() {
   const { category } = useParams<{ category: Category }>();
@@ -33,7 +34,7 @@ export default function NewsPage() {
       {loading && <p>로딩 중...</p>}
       {!loading && <p>뉴스 개수: {articles.length}</p>}
       <Header />
-      <NewsList />
+      {loading ? <Loading /> : <NewsList />}
     </main>
   );
 }
