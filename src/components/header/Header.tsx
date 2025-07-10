@@ -8,9 +8,47 @@ import { Theme } from '../../types/theme';
 
 const HeaderContainer = styled.div<{ theme: Theme }>`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  flex-direction: column;
   padding: 0.5rem;
+  background-color: ${({ theme }) =>
+    theme === 'light' ? LIGHT_COLORS.background : DARK_COLORS.background};
+`;
+
+const TitleContainer = styled.div<{ theme: Theme }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  background-color: ${({ theme }) =>
+    theme === 'light' ? LIGHT_COLORS.background : DARK_COLORS.background};
+`;
+
+const Title = styled.h1<{ theme: Theme }>`
+  color: ${({ theme }) =>
+    theme === 'light' ? LIGHT_COLORS.title : DARK_COLORS.title};
+`;
+
+const ThemeButton = styled.button<{ theme: Theme }>`
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  background-color: ${({ theme }) =>
+    theme === 'light' ? LIGHT_COLORS.background : DARK_COLORS.background};
+  color: ${({ theme }) =>
+    theme === 'light' ? LIGHT_COLORS.title : DARK_COLORS.title};
+  border: none;
+  border-radius: 50%;
+`;
+
+const CategoryContainer = styled.div<{ theme: Theme }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
   background-color: ${({ theme }) =>
     theme === 'light' ? LIGHT_COLORS.background : DARK_COLORS.background};
 `;
@@ -37,15 +75,26 @@ const CategoryBlock = styled.div<{ onClick: () => void; theme: Theme }>`
 
 const Header = () => {
   const navigate = useNavigate();
-  const { theme } = useThemeStore();
+  const { theme, toggleTheme } = useThemeStore();
 
   return (
     <HeaderContainer theme={theme}>
-      {categories.map((category) => (
-        <CategoryBlock key={category} onClick={() => navigate(`/${category}`)}>
-          {category}
-        </CategoryBlock>
-      ))}
+      <ThemeButton theme={theme} onClick={toggleTheme}>
+        {theme === 'light' ? '🌙' : '☀️'}
+      </ThemeButton>
+      <TitleContainer theme={theme}>
+        <Title theme={theme}>News</Title>
+      </TitleContainer>
+      <CategoryContainer theme={theme}>
+        {categories.map((category) => (
+          <CategoryBlock
+            key={category}
+            onClick={() => navigate(`/${category}`)}
+          >
+            {category}
+          </CategoryBlock>
+        ))}
+      </CategoryContainer>
     </HeaderContainer>
   );
 };
