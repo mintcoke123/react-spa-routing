@@ -8,12 +8,17 @@ import {
   isLongDescription,
   isLongTitle,
 } from '../../utils/utils';
+import { LIGHT_COLORS, DARK_COLORS } from '../../constants/colors';
+import { useThemeStore } from '../store/store';
+import { Theme } from '../../types/theme';
 
-const NewsItemContainer = styled.div`
+const NewsItemContainer = styled.div<{ theme: Theme }>`
   display: flex;
   flex-direction: row;
   gap: 1rem;
   cursor: pointer;
+  background-color: ${({ theme }) =>
+    theme === 'light' ? LIGHT_COLORS.background : DARK_COLORS.background};
 `;
 
 const NewsItemImage = styled.img`
@@ -30,27 +35,34 @@ const NewsItemContent = styled.div`
   gap: 1rem;
 `;
 
-const NewsItemTitle = styled.h3`
+const NewsItemTitle = styled.h3<{ theme: Theme }>`
   font-size: 1.5rem;
   font-weight: bold;
+  color: ${({ theme }) =>
+    theme === 'light' ? LIGHT_COLORS.title : DARK_COLORS.title};
 `;
 
-const NewsItemDescription = styled.p`
+const NewsItemDescription = styled.p<{ theme: Theme }>`
   font-size: 1rem;
-  color: #666;
+  color: ${({ theme }) =>
+    theme === 'light' ? LIGHT_COLORS.description : DARK_COLORS.description};
 `;
 
 const NewsItem = ({ article }: { article: Article }) => {
+  const { theme } = useThemeStore();
   return (
-    <NewsItemContainer onClick={() => window.open(article.url, '_blank')}>
+    <NewsItemContainer
+      theme={theme}
+      onClick={() => window.open(article.url, '_blank')}
+    >
       <NewsItemImage src={article.urlToImage ?? noImage} alt={article.title} />
       <NewsItemContent>
-        <NewsItemTitle>
+        <NewsItemTitle theme={theme}>
           {isLongTitle(article.title)
             ? getShorterTitle(article.title)
             : article.title}
         </NewsItemTitle>
-        <NewsItemDescription>
+        <NewsItemDescription theme={theme}>
           {article.description
             ? isLongDescription(article.description)
               ? getShorterDescription(article.description)

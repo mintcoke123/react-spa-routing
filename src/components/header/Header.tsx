@@ -3,17 +3,19 @@ import { styled } from 'styled-components';
 import { categories } from '../../constants/categories';
 import { useThemeStore } from '../store/store';
 import { useNavigate } from 'react-router-dom';
-import { LIGHT_COLORS } from '../../constants/colors';
+import { DARK_COLORS, LIGHT_COLORS } from '../../constants/colors';
+import { Theme } from '../../types/theme';
 
-const HeaderContainer = styled.div`
+const HeaderContainer = styled.div<{ theme: Theme }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem;
-  background-color: #f0f0f0;
+  background-color: ${({ theme }) =>
+    theme === 'light' ? LIGHT_COLORS.background : DARK_COLORS.background};
 `;
 
-const CategoryBlock = styled.div<{ onClick: () => void }>`
+const CategoryBlock = styled.div<{ onClick: () => void; theme: Theme }>`
   display: flex;
   gap: 1rem;
   height: 100%;
@@ -21,21 +23,24 @@ const CategoryBlock = styled.div<{ onClick: () => void }>`
   margin: 0 0.1rem;
   align-items: center;
   padding: 0.5rem 1rem;
-  background-color: ${LIGHT_COLORS.primary};
+  background-color: ${({ theme }) =>
+    theme === 'light' ? LIGHT_COLORS.primary : DARK_COLORS.primary};
   text-align: center;
-  color: white;
+  color: ${({ theme }) =>
+    theme === 'light' ? LIGHT_COLORS.title : DARK_COLORS.title};
   cursor: pointer;
   &:hover {
-    background-color: ${LIGHT_COLORS.secondary};
+    background-color: ${({ theme }) =>
+      theme === 'light' ? LIGHT_COLORS.secondary : DARK_COLORS.secondary};
   }
 `;
 
 const Header = () => {
   const navigate = useNavigate();
-  const { theme, toggleTheme } = useThemeStore();
+  const { theme } = useThemeStore();
 
   return (
-    <HeaderContainer>
+    <HeaderContainer theme={theme}>
       {categories.map((category) => (
         <CategoryBlock key={category} onClick={() => navigate(`/${category}`)}>
           {category}

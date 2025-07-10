@@ -4,12 +4,14 @@ import { Article } from '../../types/article';
 import { Category } from '../../types/category';
 import { ThemeStore } from '../../types/theme';
 
-export const useThemeStore = create<ThemeStore>((set) => ({
+export const useThemeStore = create<ThemeStore>((set, get) => ({
   theme: 'light',
-  toggleTheme: () =>
+  toggleTheme: () => {
     set((state) => ({
       theme: state.theme === 'light' ? 'dark' : 'light',
-    })),
+    }));
+    console.log(get().theme);
+  },
 }));
 
 interface NewsDataStore {
