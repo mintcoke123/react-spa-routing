@@ -19,6 +19,11 @@ const NewsItemContainer = styled.div<{ theme: Theme }>`
   cursor: pointer;
   background-color: ${({ theme }) =>
     theme === 'light' ? LIGHT_COLORS.background : DARK_COLORS.background};
+  &:hover {
+    background-color: ${({ theme }) =>
+      theme === 'light' ? LIGHT_COLORS.hover : DARK_COLORS.hover};
+  }
+  padding: 0rem 7rem;
 `;
 
 const NewsItemImage = styled.img`

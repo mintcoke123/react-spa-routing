@@ -47,30 +47,31 @@ const CategoryContainer = styled.div<{ theme: Theme }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  gap: 1rem;
+  gap: 0.3rem;
+  width: 90%;
   background-color: ${({ theme }) =>
     theme === 'light' ? LIGHT_COLORS.background : DARK_COLORS.background};
 `;
 
 const CategoryBlock = styled.div<{ onClick: () => void; theme: Theme }>`
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
   height: 100%;
   width: 100%;
   margin: 0 0.1rem;
   align-items: center;
+  justify-content: center;
   padding: 0.5rem 1rem;
   background-color: ${({ theme }) =>
     theme === 'light' ? LIGHT_COLORS.primary : DARK_COLORS.primary};
-  text-align: center;
   color: ${({ theme }) =>
-    theme === 'light' ? LIGHT_COLORS.title : DARK_COLORS.title};
+    theme === 'light' ? LIGHT_COLORS.categoryText : DARK_COLORS.categoryText};
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) =>
       theme === 'light' ? LIGHT_COLORS.secondary : DARK_COLORS.secondary};
   }
+  border-radius: 1rem;
 `;
 
 const Header = () => {
@@ -90,6 +91,7 @@ const Header = () => {
           <CategoryBlock
             key={category}
             onClick={() => navigate(`/${category}`)}
+            theme={theme}
           >
             {category}
           </CategoryBlock>

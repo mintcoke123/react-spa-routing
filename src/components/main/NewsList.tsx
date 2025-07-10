@@ -17,6 +17,7 @@ const NewsListContainer = styled.div<{ theme: Theme }>`
 const NewsList = () => {
   const { newsData, isLoading } = useNewsDataStore();
   const { theme } = useThemeStore();
+  console.log(newsData);
 
   return (
     <NewsListContainer theme={theme}>
@@ -27,6 +28,7 @@ const NewsList = () => {
           <NewsItem key={article.url} article={article} />
         ))
       )}
+      <hr style={{ border: '1px solid #000' }} />
     </NewsListContainer>
   );
 };
