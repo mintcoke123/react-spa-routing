@@ -1,10 +1,12 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import { Article } from '../../types/article';
 
 const NewsItemContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 1rem;
+  cursor: pointer;
 `;
 
 const NewsItemImage = styled.img`
@@ -31,13 +33,13 @@ const NewsItemDescription = styled.p`
   color: #666;
 `;
 
-const NewsItem = () => {
+const NewsItem = ({ article }: { article: Article }) => {
   return (
-    <NewsItemContainer>
-      <NewsItemImage src="https://via.placeholder.com/150" />
+    <NewsItemContainer onClick={() => window.open(article.url, '_blank')}>
+      <NewsItemImage src={article.urlToImage} alt={article.title} />
       <NewsItemContent>
-        <NewsItemTitle>NewsItemTitle</NewsItemTitle>
-        <NewsItemDescription>NewsItemDescription</NewsItemDescription>
+        <NewsItemTitle>{article.title}</NewsItemTitle>
+        <NewsItemDescription>{article.description}</NewsItemDescription>
       </NewsItemContent>
     </NewsItemContainer>
   );
