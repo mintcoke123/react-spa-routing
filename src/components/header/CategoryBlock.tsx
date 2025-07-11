@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 const CategoryBlockContainer = styled.div<{
   onClick: () => void;
   theme: Theme;
-  isSelected: boolean;
+  $isSelected: boolean;
 }>`
   flex: 1;
   display: flex;
@@ -17,12 +17,12 @@ const CategoryBlockContainer = styled.div<{
   align-items: center;
   box-sizing: border-box;
   justify-content: center;
-  background-color: ${({ isSelected, theme }) =>
+  background-color: ${({ $isSelected, theme }) =>
     theme === 'light'
-      ? isSelected
+      ? $isSelected
         ? LIGHT_COLORS.primary
         : LIGHT_COLORS.background
-      : isSelected
+      : $isSelected
         ? DARK_COLORS.primary
         : DARK_COLORS.background};
 
@@ -57,7 +57,7 @@ export const CategoryBlock = ({
     <CategoryBlockContainer
       onClick={onClick}
       theme={theme}
-      isSelected={category === selectedCategory}
+      $isSelected={category === selectedCategory}
     >
       {category}
     </CategoryBlockContainer>
