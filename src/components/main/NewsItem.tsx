@@ -5,6 +5,7 @@ import noImage from '../../assets/noImage.png';
 import { LIGHT_COLORS, DARK_COLORS } from '../../constants/colors';
 import { useThemeStore } from '../store/store';
 import { Theme } from '../../types/theme';
+import { messages } from '../../constants/texts';
 
 const NewsItemContainer = styled.div<{ theme: Theme }>`
   display: flex;
@@ -77,7 +78,7 @@ const NewsItem = ({ article }: { article: Article }) => {
       <NewsItemContent>
         <NewsItemTitle theme={theme}>{article.title}</NewsItemTitle>
         <NewsItemDescription theme={theme}>
-          {article.description}
+          {article.description || messages.noDescription}
         </NewsItemDescription>
       </NewsItemContent>
     </NewsItemContainer>
