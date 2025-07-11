@@ -16,6 +16,8 @@ const CategoryBlockContainer = styled.div<{
   width: 100%;
   align-items: center;
   box-sizing: border-box;
+  font-size: 1.4rem;
+  font-weight: bold;
   justify-content: center;
   background-color: ${({ $isSelected, theme }) =>
     theme === 'light'
