@@ -7,6 +7,7 @@ import { useNewsDataStore, useThemeStore } from '../components/store/store';
 import { Theme } from '../types/theme';
 import { DARK_COLORS, LIGHT_COLORS } from '../constants/colors';
 import Main from '../components/main/main';
+import ToggleButton from '../components/theme/toggleButton';
 
 const NewsPageContainer = styled.main<{ theme: Theme }>`
   display: flex;
@@ -28,6 +29,7 @@ export default function NewsPage() {
 
   return (
     <NewsPageContainer theme={theme}>
+      <ToggleButton />
       <Header />
       <Main />
     </NewsPageContainer>
