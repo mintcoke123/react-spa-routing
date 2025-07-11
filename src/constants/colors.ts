@@ -19,5 +19,3 @@ export const DARK_COLORS = {
   hover: '#212121',
   categoryText: '#FFFFFF',
 };
-
-export const BASIC_COLORS = {};

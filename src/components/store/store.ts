@@ -1,8 +1,8 @@
 import { create } from 'zustand';
 import { fetchNewsByCategory } from '../../api/newsApi';
-import { Article } from '../../types/article';
-import { Category } from '../../types/category';
 import { ThemeStore } from '../../types/theme';
+import { NewsDataStore } from '../../types/data';
+import { Category } from '../../types/category';
 
 export const useThemeStore = create<ThemeStore>((set, get) => ({
   theme: 'light',
@@ -13,12 +13,6 @@ export const useThemeStore = create<ThemeStore>((set, get) => ({
     console.log(get().theme);
   },
 }));
-
-interface NewsDataStore {
-  newsData: Article[];
-  setNewsData: (category: Category) => Promise<void>;
-  isLoading: boolean;
-}
 
 export const useNewsDataStore = create<NewsDataStore>((set) => ({
   newsData: [],
