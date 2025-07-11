@@ -5,6 +5,7 @@ import { useNewsDataStore, useThemeStore } from '../store/store';
 import Loading from './Loading';
 import { Theme } from '../../types/theme';
 import { DARK_COLORS, LIGHT_COLORS } from '../../constants/colors';
+import { v4 as uuidv4 } from 'uuid';
 
 const NewsListContainer = styled.div<{ theme: Theme }>`
   display: flex;
@@ -20,16 +21,13 @@ const NewsListContainer = styled.div<{ theme: Theme }>`
 const NewsList = () => {
   const { newsData, isLoading } = useNewsDataStore();
   const { theme } = useThemeStore();
-  console.log(newsData);
 
   return (
     <NewsListContainer theme={theme}>
       {isLoading ? (
         <Loading />
       ) : (
-        newsData.map((article) => (
-          <NewsItem key={article.url} article={article} />
-        ))
+        newsData.map((article) => <NewsItem key={uuidv4()} article={article} />)
       )}
     </NewsListContainer>
   );
