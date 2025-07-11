@@ -1,13 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import { Article } from '../../types/article';
-import noImage from '../../assets/noImage.svg';
-import {
-  getShorterDescription,
-  getShorterTitle,
-  isLongDescription,
-  isLongTitle,
-} from '../../utils/utils';
+import noImage from '../../assets/noImage.png';
 import { LIGHT_COLORS, DARK_COLORS } from '../../constants/colors';
 import { useThemeStore } from '../store/store';
 import { Theme } from '../../types/theme';
@@ -22,22 +16,25 @@ const NewsItemContainer = styled.div<{ theme: Theme }>`
   &:hover {
     background-color: ${({ theme }) =>
       theme === 'light' ? LIGHT_COLORS.hover : DARK_COLORS.hover};
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
   }
-  padding: 0rem 7rem;
 `;
 
 const NewsItemImage = styled.img`
-  width: 12rem;
+  width: 10rem;
   height: 10rem;
   border-radius: 1rem;
-  align-self: left;
   object-fit: cover;
+  object-position: center;
 `;
 
 const NewsItemContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  flex: 1;
+  min-width: 0;
 `;
 
 const NewsItemTitle = styled.h3<{ theme: Theme }>`
@@ -45,12 +42,23 @@ const NewsItemTitle = styled.h3<{ theme: Theme }>`
   font-weight: bold;
   color: ${({ theme }) =>
     theme === 'light' ? LIGHT_COLORS.title : DARK_COLORS.title};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
 `;
 
 const NewsItemDescription = styled.p<{ theme: Theme }>`
   font-size: 1rem;
   color: ${({ theme }) =>
     theme === 'light' ? LIGHT_COLORS.description : DARK_COLORS.description};
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 `;
 
 const NewsItem = ({ article }: { article: Article }) => {
@@ -60,19 +68,16 @@ const NewsItem = ({ article }: { article: Article }) => {
       theme={theme}
       onClick={() => window.open(article.url, '_blank')}
     >
-      <NewsItemImage src={article.urlToImage ?? noImage} alt={article.title} />
+      <NewsItemImage
+        src={article.urlToImage || noImage}
+        onError={(e) => {
+          e.currentTarget.src = noImage;
+        }}
+      />
       <NewsItemContent>
-        <NewsItemTitle theme={theme}>
-          {isLongTitle(article.title)
-            ? getShorterTitle(article.title)
-            : article.title}
-        </NewsItemTitle>
+        <NewsItemTitle theme={theme}>{article.title}</NewsItemTitle>
         <NewsItemDescription theme={theme}>
-          {article.description
-            ? isLongDescription(article.description)
-              ? getShorterDescription(article.description)
-              : article.description
-            : 'No description'}
+          {article.description}
         </NewsItemDescription>
       </NewsItemContent>
     </NewsItemContainer>

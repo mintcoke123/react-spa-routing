@@ -10,8 +10,11 @@ const NewsListContainer = styled.div<{ theme: Theme }>`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  padding: 1rem;
+  width: 100%;
   background-color: ${({ theme }) =>
     theme === 'light' ? LIGHT_COLORS.background : DARK_COLORS.background};
+  align-self: center;
 `;
 
 const NewsList = () => {
@@ -28,7 +31,6 @@ const NewsList = () => {
           <NewsItem key={article.url} article={article} />
         ))
       )}
-      <hr style={{ border: '1px solid #000' }} />
     </NewsListContainer>
   );
 };
