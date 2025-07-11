@@ -3,8 +3,8 @@ import { Theme } from './theme';
 
 export type Category = (typeof categories)[number];
 
-export type CategoryBlockProps = {
+export interface CategoryBlockProps {
   category: Category;
   onClick: () => void;
   theme: Theme;
-};
+}
