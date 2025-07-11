@@ -3,12 +3,13 @@ import { styled } from 'styled-components';
 import { useThemeStore } from '../store/store';
 import { DARK_COLORS, LIGHT_COLORS } from '../../constants/colors';
 import { Theme } from '../../types/theme';
+import { messages } from '../../constants/texts';
 
 const LoadingContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 50vh;
 `;
 
 const LoadingText = styled.p<{ theme: Theme }>`
@@ -20,7 +21,7 @@ const Loading = () => {
   const { theme } = useThemeStore();
   return (
     <LoadingContainer>
-      <LoadingText theme={theme}>Loading...</LoadingText>
+      <LoadingText theme={theme}>{messages.loading}</LoadingText>
     </LoadingContainer>
   );
 };

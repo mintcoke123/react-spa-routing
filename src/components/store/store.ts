@@ -17,13 +17,14 @@ export const useThemeStore = create<ThemeStore>((set, get) => ({
 export const useNewsDataStore = create<NewsDataStore>((set) => ({
   newsData: [],
   isLoading: false,
+  isError: false,
   setNewsData: async (category: Category) => {
     set({ isLoading: true });
     try {
       const newsData = await fetchNewsByCategory(category);
       set({ newsData });
     } catch (error) {
-      console.error('뉴스 데이터 가져오기 실패', error);
+      set({ isError: true });
     } finally {
       set({ isLoading: false });
     }

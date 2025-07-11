@@ -6,6 +6,7 @@ import Loading from './Loading';
 import { Theme } from '../../types/theme';
 import { DARK_COLORS, LIGHT_COLORS } from '../../constants/colors';
 import { v4 as uuidv4 } from 'uuid';
+import Error from './Error';
 
 const NewsListContainer = styled.div<{ theme: Theme }>`
   display: flex;
@@ -19,11 +20,12 @@ const NewsListContainer = styled.div<{ theme: Theme }>`
 `;
 
 const NewsList = () => {
-  const { newsData, isLoading } = useNewsDataStore();
+  const { newsData, isLoading, isError } = useNewsDataStore();
   const { theme } = useThemeStore();
 
   return (
     <NewsListContainer theme={theme}>
+      {isError && <Error />}
       {isLoading ? (
         <Loading />
       ) : (

@@ -4,6 +4,7 @@ import { useThemeStore } from '../store/store';
 import { DARK_COLORS, LIGHT_COLORS } from '../../constants/colors';
 import { Theme } from '../../types/theme';
 import CategoryList from './CategoryList';
+import { Texts } from '../../constants/texts';
 
 const HeaderContainer = styled.div<{ theme: Theme }>`
   display: flex;
@@ -23,12 +24,9 @@ const TitleContainer = styled.div<{ theme: Theme }>`
   height: 8rem;
   background-color: ${({ theme }) =>
     theme === 'light' ? LIGHT_COLORS.background : DARK_COLORS.background};
-`;
-
-const Title = styled.h1<{ theme: Theme }>`
   color: ${({ theme }) =>
     theme === 'light' ? LIGHT_COLORS.title : DARK_COLORS.title};
-  font-size: 4rem;
+  font-size: 3rem;
 `;
 
 const Header = () => {
@@ -37,7 +35,7 @@ const Header = () => {
   return (
     <HeaderContainer theme={theme}>
       <TitleContainer theme={theme}>
-        <Title theme={theme}>News</Title>
+        <h1>{Texts.title}</h1>
       </TitleContainer>
       <CategoryList />
     </HeaderContainer>

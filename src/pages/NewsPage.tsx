@@ -6,7 +6,7 @@ import { styled } from 'styled-components';
 import { useNewsDataStore, useThemeStore } from '../components/store/store';
 import { Theme } from '../types/theme';
 import { DARK_COLORS, LIGHT_COLORS } from '../constants/colors';
-import Main from '../components/main/main';
+import Main from '../components/main/Main';
 import ToggleButton from '../components/theme/toggleButton';
 
 const NewsPageContainer = styled.main<{ theme: Theme }>`
