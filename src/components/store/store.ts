@@ -6,7 +6,7 @@ import { Category } from '../../types/category';
 
 const currentTheme = (localStorage.getItem('theme') as Theme) || 'light';
 
-export const useThemeStore = create<ThemeStore>((set, get) => ({
+export const useThemeStore = create<ThemeStore>((set) => ({
   theme: currentTheme,
   toggleTheme: () => {
     set((state) => {
@@ -26,7 +26,7 @@ export const useNewsDataStore = create<NewsDataStore>((set) => ({
     try {
       const newsData = await fetchNewsByCategory(category);
       set({ newsData });
-    } catch (error) {
+    } catch {
       set({ isError: true });
     } finally {
       set({ isLoading: false });

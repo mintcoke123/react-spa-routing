@@ -4,7 +4,7 @@ import { useThemeStore } from '../store/store';
 import { DARK_COLORS, LIGHT_COLORS } from '../../constants/colors';
 import { Theme } from '../../types/theme';
 import CategoryList from './CategoryList';
-import { Texts } from '../../constants/texts';
+import { TEXTS } from '../../constants/texts';
 
 const HeaderContainer = styled.div<{ theme: Theme }>`
   display: flex;
@@ -35,7 +35,7 @@ const Header = () => {
   return (
     <HeaderContainer theme={theme}>
       <TitleContainer theme={theme}>
-        <h1>{Texts.title}</h1>
+        <h1>{TEXTS.title}</h1>
       </TitleContainer>
       <CategoryList />
     </HeaderContainer>

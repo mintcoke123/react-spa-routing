@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import { useThemeStore } from '../store/store';
 import { DARK_COLORS, LIGHT_COLORS } from '../../constants/colors';
 import { Theme } from '../../types/theme';
-import { messages } from '../../constants/texts';
+import { MESSAGES } from '../../constants/texts';
 
 const LoadingContainer = styled.div`
   display: flex;
@@ -21,7 +21,7 @@ const Loading = () => {
   const { theme } = useThemeStore();
   return (
     <LoadingContainer>
-      <LoadingText theme={theme}>{messages.loading}</LoadingText>
+      <LoadingText theme={theme}>{MESSAGES.loading}</LoadingText>
     </LoadingContainer>
   );
 };

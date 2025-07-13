@@ -4,7 +4,7 @@ import { DARK_COLORS } from '../../constants/colors';
 import { Theme } from '../../types/theme';
 import { styled } from 'styled-components';
 import { CategoryBlock } from './CategoryBlock';
-import { categories } from '../../constants/categories';
+import { CATEGORIES } from '../../constants/categories';
 import { useNavigate } from 'react-router-dom';
 import { useThemeStore } from '../store/store';
 
@@ -27,7 +27,7 @@ const CategoryList = () => {
   return (
     <>
       <CategoryContainer theme={theme}>
-        {categories.map((category) => (
+        {CATEGORIES.map((category) => (
           <CategoryBlock
             key={category}
             onClick={() => navigate(`/${category}`)}

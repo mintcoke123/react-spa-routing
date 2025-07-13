@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import { Theme } from '../../types/theme';
 import { DARK_COLORS, LIGHT_COLORS } from '../../constants/colors';
 import { useThemeStore } from '../store/store';
-import { messages } from '../../constants/texts';
+import { MESSAGES } from '../../constants/texts';
 
 const ErrorContainer = styled.div<{ theme: Theme }>`
   display: flex;
@@ -21,7 +21,7 @@ const Error = () => {
   const { theme } = useThemeStore();
   return (
     <ErrorContainer theme={theme}>
-      <ErrorText theme={theme}>{messages.error}</ErrorText>
+      <ErrorText theme={theme}>{MESSAGES.error}</ErrorText>
     </ErrorContainer>
   );
 };
