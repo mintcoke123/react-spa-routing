@@ -49,11 +49,7 @@ const CategoryBlockContainer = styled.div<{
   }
 `;
 
-export const CategoryBlock = ({
-  category,
-  onClick,
-  theme,
-}: CategoryBlockProps) => {
+const CategoryBlock = ({ category, onClick, theme }: CategoryBlockProps) => {
   const { category: selectedCategory } = useParams();
   return (
     <CategoryBlockContainer

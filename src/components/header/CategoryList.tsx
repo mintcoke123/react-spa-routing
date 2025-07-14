@@ -3,7 +3,7 @@ import { LIGHT_COLORS } from '../../constants/colors';
 import { DARK_COLORS } from '../../constants/colors';
 import { Theme } from '../../types/theme';
 import { styled } from 'styled-components';
-import { CategoryBlock } from './CategoryBlock';
+import CategoryBlock from './CategoryBlock';
 import { CATEGORIES } from '../../constants/categories';
 import { useNavigate } from 'react-router-dom';
 import { useThemeStore } from '../store/store';
