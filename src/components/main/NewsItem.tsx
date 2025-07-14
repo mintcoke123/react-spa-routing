@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 import { Article } from '../../types/article';
 import noImage from '../../assets/noImage.png';
 import { MESSAGES } from '../../constants/texts';
+import { isValidImageUrl } from '../../utils/utils';
 
 const NewsItemContainer = styled.div`
   display: flex;
@@ -59,7 +60,10 @@ const NewsItem = ({ article }: { article: Article }) => {
   return (
     <NewsItemContainer onClick={() => window.open(article.url, '_blank')}>
       <NewsItemImage
-        src={article.urlToImage || noImage}
+        src={
+          isValidImageUrl(article.urlToImage) ? article.urlToImage! : noImage
+        }
+        alt={article.title}
         onError={(e) => {
           e.currentTarget.src = noImage;
         }}
