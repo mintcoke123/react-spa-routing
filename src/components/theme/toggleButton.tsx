@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Theme } from '../../types/theme';
 import { useThemeStore } from '../store/store';
 import lightMode from '../../assets/lightMode.png';
 import darkMode from '../../assets/darkMode.png';
 
-const ThemeButton = styled.button<{ theme: Theme }>`
+const ThemeButton = styled.button`
   position: fixed;
   width: 6rem;
   height: 3rem;
@@ -22,7 +21,7 @@ const ThemeButton = styled.button<{ theme: Theme }>`
 const ToggleButton = () => {
   const { theme, toggleTheme } = useThemeStore();
   return (
-    <ThemeButton theme={theme} onClick={toggleTheme}>
+    <ThemeButton onClick={toggleTheme}>
       <img
         src={theme === 'light' ? lightMode : darkMode}
         alt="theme"
