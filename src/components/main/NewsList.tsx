@@ -3,6 +3,7 @@ import NewsItem from './NewsItem';
 import { useNewsDataStore } from '../store/store';
 import Loading from './Loading';
 import Error from './Error';
+import { isValidArticle } from '../../utils/utils';
 
 const NewsListContainer = styled.div`
   display: flex;
@@ -23,9 +24,9 @@ const NewsList = () => {
       {isLoading ? (
         <Loading />
       ) : (
-        newsData.map((article) => (
-          <NewsItem key={article.url} article={article} />
-        ))
+        newsData
+          .filter(isValidArticle)
+          .map((article) => <NewsItem key={article.url} article={article} />)
       )}
     </NewsListContainer>
   );

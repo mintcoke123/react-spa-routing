@@ -1,9 +1,12 @@
-export const isValidImageUrl = (url: string | null | undefined) => {
-  if (!url) return false;
-  try {
-    const parsedUrl = new URL(url);
-    return parsedUrl.protocol === 'http:' || parsedUrl.protocol === 'https:';
-  } catch {
-    return false;
-  }
+import { Article } from '../types/article';
+
+export const isValidArticle = (article: unknown): article is Article => {
+  return (
+    typeof article === 'object' &&
+    article !== null &&
+    typeof (article as Article).url === 'string' &&
+    typeof (article as Article).title === 'string' &&
+    typeof (article as Article).description === 'string' &&
+    typeof (article as Article).urlToImage === 'string'
+  );
 };
