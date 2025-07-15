@@ -2,7 +2,7 @@ import { Category } from '../types/category';
 import { Article } from '../types/article';
 import axios from 'axios';
 
-const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
+const { VITE_NEWS_API_KEY } = import.meta.env;
 const BASE_URL = 'https://newsapi.org/v2/top-headlines';
 
 export async function fetchNewsByCategory(
@@ -12,7 +12,7 @@ export async function fetchNewsByCategory(
     params: {
       country: 'us',
       category,
-      apiKey: API_KEY,
+      apiKey: VITE_NEWS_API_KEY,
     },
   });
 
