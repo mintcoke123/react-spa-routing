@@ -1,4 +1,3 @@
-import React from 'react';
 import { styled } from 'styled-components';
 import { CategoryBlockProps } from '../../types/category';
 import { useParams } from 'react-router-dom';

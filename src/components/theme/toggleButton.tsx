@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { useThemeStore } from '../store/store';
 import lightMode from '../../assets/lightMode.png';

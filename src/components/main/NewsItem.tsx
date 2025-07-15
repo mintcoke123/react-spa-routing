@@ -1,4 +1,3 @@
-import React from 'react';
 import { styled } from 'styled-components';
 import { Article } from '../../types/article';
 import noImage from '../../assets/noImage.png';

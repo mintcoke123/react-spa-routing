@@ -1,4 +1,3 @@
-import React from 'react';
 import { styled } from 'styled-components';
 import CategoryList from './CategoryList';
 import { TEXTS } from '../../constants/texts';

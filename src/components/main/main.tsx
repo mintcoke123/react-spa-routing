@@ -1,4 +1,3 @@
-import React from 'react';
 import NewsList from './NewsList';
 import { styled } from 'styled-components';
 import { useParams } from 'react-router-dom';

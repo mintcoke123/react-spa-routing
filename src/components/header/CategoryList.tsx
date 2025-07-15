@@ -1,4 +1,3 @@
-import React from 'react';
 import { styled } from 'styled-components';
 import CategoryBlock from './CategoryBlock';
 import { CATEGORIES } from '../../constants/categories';

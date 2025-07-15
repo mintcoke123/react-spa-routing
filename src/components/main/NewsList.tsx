@@ -1,4 +1,3 @@
-import React from 'react';
 import { styled } from 'styled-components';
 import NewsItem from './NewsItem';
 import { useNewsDataStore } from '../store/store';
