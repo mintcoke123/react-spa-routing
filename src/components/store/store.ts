@@ -1,21 +1,25 @@
 import { create } from 'zustand';
 import { fetchNewsByCategory } from '../../api/newsApi';
-import { Theme, ThemeStore } from '../../types/theme';
+import { ThemeStore } from '../../types/theme';
 import { NewsDataStore } from '../../types/data';
 import { Category } from '../../types/category';
+import { persist } from 'zustand/middleware';
 
-const currentTheme = (localStorage.getItem('theme') as Theme) || 'light';
-
-export const useThemeStore = create<ThemeStore>((set) => ({
-  theme: currentTheme,
-  toggleTheme: () => {
-    set((state) => {
-      const newTheme = state.theme === 'light' ? 'dark' : 'light';
-      localStorage.setItem('theme', newTheme);
-      return { theme: newTheme };
-    });
-  },
-}));
+export const useThemeStore = create<ThemeStore>()(
+  persist(
+    (set) => ({
+      theme: 'light',
+      toggleTheme: () => {
+        set((state) => ({
+          theme: state.theme === 'light' ? 'dark' : 'light',
+        }));
+      },
+    }),
+    {
+      name: 'theme',
+    },
+  ),
+);
 
 export const useNewsDataStore = create<NewsDataStore>((set) => ({
   newsData: [],
